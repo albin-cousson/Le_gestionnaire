@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Le_gestionnaire_app/Le_gestionnaireC.css'%}"/>
+  </head>
+  <body>
+
+    {% for i in second %}
+        <p class="main_categorie" style="display: none;">{{i.categorie}}</p>
+    {% endfor %}
+
+    <a class="retour mb-2" href="{% url 'getionnaire' %}"><button type="button" class="btn btn-outline-success">Retour à l'accueil</button></a>
+
+    {% for main_idea in main_ideas %}
+      <div id="{{main_idea.id}}" class="bg-danger      blockSuppression__mainIdea"> 
+        <p class="h4 m-0 p-0 text-light"> Confirmer la suppression de cette idée ?</p>
+        <div>
+          <a href="{% url 'getionnaireDelete' main_idea.id %}"><button class="btn btn-success">OUI</button></a>
+          <a href="#"><button class="btn btn-danger      blockSuppression__mainIdea__non">NON</button></a>
+        </div>
+      </div>
+    {% endfor %}
+
+    <div class="container-fluid ">
+      <div class="row">
+        <div class="col-3 w-100 p-2 blockMainIdea">
+          <ul class="nav">
+            {% for main_idea in main_ideas %}
+              <li class="nav-item d-flex justify-content-between align-items-center w-100 m-1 p-2 border border-success      blockMainIdea__nav__item">
+                <a class="nav-link h4 m-0 pr-0 text-white" href="{% url 'getionnaireEdit' main_idea.id %}">{{main_idea.idea}}</a>
+                <a id="{{main_idea.id}}" class="nav-link d-flex justify-content-center align-items-center px-0      blockMainIdea__nav__item__buttonCroix" href="#">
+                  <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="#dc3545" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </a>
+              </li>
+            {% empty %}
+            <a class="nav-link h3 text-white">Aucune idée</a>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="col-9 d-flex flex-column justify-content-between      containerCard__secondIdeaForm">
+          <div class="d-flex flex-wrap justify-content-between      containerCard__secondIdea">
+          {% for i in second_ideas %}
+              <div class="card w-100 mt-3 border-success">
+                  <div class="card-header text-center d-flex justify-content-center align-items-center text-center">
+                      <a class="idea h4 m-0" href="{% url 'getionnaireEditSousIdee' i.id %}">{{i.idea}}</a>
+  
+                      <a id="{{i.id}}" class="secondIdea__buttonCroix nav-link px-0" href="#">
+                        <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-x" fill="#dc3545" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                      </a>
+  
+                      <div id="{{i.id}}" class="secondIdea__buttonConfirmation blockSuppression__mainIdea bg-danger" style="display: none;">
+                        <p class="h4 m-0 p-0 text-light"> Confirmer la suppression de cette idée ?</p>
+                        <div>
+                          <a href="{% url 'getionnaireDeleteSousIdee' i.id %}"><button class="btn btn-success">OUI</button></a>
+                          <a><button class="secondIdea__bouttonConfirmation__non btn btn-danger">NON</button></a>
+                        </div>
+                      </div>
+  
+                      <a class="nav-link px-0" href="{% url 'second_programme_url' i.id %}">
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-check2" fill="#28a745" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                      </a>
+                      <p class="sous_categorie" style="display: none;">{{i.categorie}}</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    {% for third_idea in third_ideas %}
+                      <li class="list-group-item text-center d-flex justify-content-center align-items-center ">
+                              <a class="h5 m-0 text-dark">{{ third_idea.idea }}</a>
+                              <a style="display: none;" class="categorie">{{ third_idea.categorie }}</a>
+                              <a class="nav-link px-0" href="{% url 'getionnaireDeleteSousSousIdee' third_idea.id %}">
+                                <svg width="1.8em" height="1.8em" viewBox="0 0 16 16" class="bi bi-x" fill="#dc3545" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                              </a>
+                              <a class="nav-link px-0" href="{% url 'programme_url' third_idea.id %}">
+                                <svg width="1.6em" height="1.6em" viewBox="0 0 16 16" class="bi bi-check2" fill="#28a745" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                </svg>
+                              </a>
+                              </br>
+                          {% empty %}
+                              {% for i in second %}
+                                  <div>
+                                      <p class="rienMain m-0 p-3 text-center"><span style="display: none;" class="rien">{{i.idea}}</span> Aucune idée ici. Bouge toi le cul.</p>
+                                  </div>
+                              {% endfor %}
+                          {% endfor %}
+                      </li>
+                  </ul>
+              </div>
+          {% endfor %}
+      </div>
+
+      <form action="" method="post" class="d-flex flex-column w-100 my-3">
+          {% csrf_token %}
+          <a class="form__text h4 p-2">{{third_form.as_p}}</a>
+          <input type="submit" value="Ajouter" class="form__buttonSubmit h4 bg-success text-white"/>
+      </form>
+    </div>
+        
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="{% static 'Le_gestionnaire_app/Le_gestionnaireB.js'%}"></script>
+</body>
+</html>
