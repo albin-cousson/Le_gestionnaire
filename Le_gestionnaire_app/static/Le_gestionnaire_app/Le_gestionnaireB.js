@@ -4,9 +4,38 @@ let list_sous = document.querySelectorAll(".list-group")
 let rienMain = document.querySelectorAll(".rienMain")
 let rien = document.querySelectorAll(".rien")
 let categorie = document.querySelectorAll(".categorie")
-
 let main_categorie = document.querySelector(".main_categorie")
 let sous_categorie = document.querySelectorAll(".sous_categorie")
+
+//Apparition du menu "projet de vie" lors du clique sur le fleche
+let projetVie__fleche = document.querySelector(".projetVie__fleche")
+let projetVie__page = document.querySelector(".projetVie__page")
+
+try {
+    projetVie__fleche.addEventListener("click", () => {
+    projetVie__page.parentNode.classList.add("projetVie__page__active")
+    blockMainIdea.style.zIndex = "5"
+})
+}catch {
+
+}
+
+//Dispparition du menu "projet de vie" lors du clique sur la flèche
+let projetVie__page__close = document.querySelector(".projetVie__page__close")
+let blockMainIdea = document.querySelector(".blockMainIdea")
+
+try {
+    projetVie__page__close.addEventListener("click", () => {
+    projetVie__page.parentNode.classList.remove("projetVie__page__active")
+    projetVie__page.style.zIndex = "6"
+    setTimeout (function() {
+        blockMainIdea.style.zIndex = "6"
+        projetVie__page.style.zIndex = "5"
+    }, 1000)
+})
+}catch{
+    
+}
 
 //foction qui fait apparatitre le message de confiramtion pour supprimer une main__idea
 let blockMainIdea__nav__item__buttonCroix = document.querySelectorAll(".blockMainIdea__nav__item__buttonCroix")
@@ -72,6 +101,7 @@ catch {
     catch{
         console.error("C'est réussi");
     }
+
 //fonction qui fait disparaitre les poubelle des third__ideas du programme 
 let list__group__item__programme__mainCategorie = document.querySelectorAll(".list-group-item__programme__mainCategorie")
 let list__group__item__svg__poubelle = document.querySelectorAll(".list-group-item__svg__poubelle")
@@ -85,6 +115,7 @@ try {
 catch {
     console.error("C'est réussi");
 }
+
 //fonction qui fait apparaitre les seconde__ideas des third__ideas du programme 
 let list__group__item__programme__idea = document.querySelectorAll(".list-group-item__programme__idea")
 try {
@@ -107,6 +138,7 @@ try {
 catch(e){
     console.error("C'est réussi");
 }
+
 //fonction qui fait disparaitre les seconde__ideas des third__ideas du programme si il sont == à "None"
 let card__programme__categorie= document.querySelectorAll(".card__programme__categorie")
 try {
@@ -121,7 +153,7 @@ catch{
 }
 
 
-
+//autre fonction à commenter
 
 
 try {

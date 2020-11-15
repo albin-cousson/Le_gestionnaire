@@ -1,3 +1,20 @@
+/*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*/
+body{
+    background-image: url("https://cdn.pixabay.com/photo/2016/11/19/22/52/coding-1841550_960_720.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+.errorlist {
+    display: none;
+}
+.retour {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    z-index: 1;
+}
 .nav-item {
     display: flex;
 }
@@ -18,25 +35,7 @@ a p {
     left: 0;
     width: 100%;
 }
-
-/*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*//*//////////*/
-.errorlist {
-    display: none;
-}
-.retour {
-    position: absolute;
-    bottom: 0;
-    right: 10px;
-    z-index: 100;
-}
-body{
-    background-image: url("https://cdn.pixabay.com/photo/2016/11/19/22/52/coding-1841550_960_720.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-}
-/*  BLOCK SUPPRESION */
+/* BLOCK SUPPRESION */
 .blockSuppression__mainIdea {
     display: none;
     justify-content: space-around;
@@ -47,13 +46,80 @@ body{
     width: 100%;
     height: 80px;
     padding: 10px;
-    z-index: 1;
+    z-index: 10;
 }
-/*  FIN BLOCK SUPPRESION */
+/* FIN BLOCK SUPPRESION */
+/* MENU PRJET DE VIE */
+.projetVie__fleche{
+    top: 50%;
+    transform: translateY(-50%);
+    left: 25%;
+    cursor: pointer;
+    z-index: 5;
+    animation: projetVie__fleche 1s infinite;
+}
+@keyframes projetVie__fleche {
+    0% {
+        left: 25%;
+    }
+    50% {
+        left: 26%;
+    }
+    100% {
+        left: 25%;
+    }
+}
+.projetVie__page {
+    top: 0;
+    left: -75%;
+    background-color: transparent;
+    transition: left 1s, background-color 1s;
+    z-index: 4;
+}
+.projetVie__page__active .projetVie__page {
+    left: 0;
+    background-color: black;
+    z-index: 10;
+}
+.projetVie__page > svg {
+    position: absolute;
+    right: 10px;
+    top:10px;
+    fill: transparent;
+    cursor: pointer;
+    transition: fill 1s;
+}
+.projetVie__page__active .projetVie__page > svg {
+    fill: #FFF;
+}
+.projetVie__page__cardBlock .card{
+    background-color: transparent !important;
+    color: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: color 1s, transform .3s, border 1s;
+}
+.projetVie__page__cardBlock .card:hover{
+    transform: translateY(-10px);
+}
+.projetVie__page__active .projetVie__page__cardBlock .card {
+    color: #FFF;
+    border: 1px solid #28a745;
+}
+.projetVie__page__cardBlock .card svg {
+    fill: transparent;
+    transition: fill 1s;
+}
+.projetVie__page__active .projetVie__page__cardBlock .card svg {
+    fill: #28a745;
+}
+
+/* FIN MENU PROJET DE VIE */
 .blockMainIdea{
     height: 100vh;
     overflow-y: scroll;
     background: rgba(0,0,0,.8);
+    z-index: 5;
 }
 .blockMainIdea::-webkit-scrollbar{
     display: none;
@@ -128,5 +194,3 @@ form {
 .containerCard__secondIdea::-webkit-scrollbar {
     overflow: hidden;
 }
-
-

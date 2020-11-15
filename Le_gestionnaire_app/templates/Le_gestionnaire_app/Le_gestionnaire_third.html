@@ -25,8 +25,16 @@
       </div>
     {% endfor %}
 
-    <div class="container-fluid ">
+    <div class="projetVie__fleche position-absolute" >
+      <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="green" stroke="#FFF" stroke-width="0.3px" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+      </svg>
+    </div>
+
+    <div class="container-fluid">
+
       <div class="row">
+
         <div class="col-3 w-100 p-2 blockMainIdea">
           <ul class="nav">
             {% for main_idea in main_ideas %}
@@ -46,7 +54,7 @@
 
         <div class="col-9 d-flex flex-column justify-content-between      containerCard__secondIdeaForm">
           <div class="d-flex flex-wrap justify-content-between      containerCard__secondIdea">
-          {% for i in second_ideas %}
+              {% for i in second_ideas %}
               <div class="card w-100 mt-3 border-success">
                   <div class="card-header text-center d-flex justify-content-center align-items-center text-center">
                       <a class="idea h4 m-0" href="{% url 'getionnaireEditSousIdee' i.id %}">{{i.idea}}</a>
@@ -98,17 +106,54 @@
                       </li>
                   </ul>
               </div>
-          {% endfor %}
-      </div>
+              {% endfor %}
+          </div>
 
-      <form action="" method="post" class="d-flex flex-column w-100 my-3">
-          {% csrf_token %}
-          <a class="form__text h4 p-2">{{third_form.as_p}}</a>
-          <input type="submit" value="Ajouter" class="form__buttonSubmit h4 bg-success text-white"/>
-      </form>
-    </div>
+          <form action="" method="post" class="d-flex flex-column w-100 my-3">
+              {% csrf_token %}
+              <a class="form__text h4 p-2">{{third_form.as_p}}</a>
+              <input type="submit" value="Ajouter" class="form__buttonSubmit h4 bg-success text-white"/>
+          </form>
+
+        </div>
         
       </div>
+
+      <div class="row">
+        <div class="col-12 position-absolute w-100 h-100 projetVie__page flex-column d-flex justify-content-center align-items-center">
+          <svg class="projetVie__page__close" width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-x-square" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+          <div class="projetVie__page__cardBlock d-flex flex-wrap justify-content-center align-items-center">
+            <div class="card m-2 text-center" style="width: 18rem;">
+              <div class="card-body">
+                <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+                <p class="card-text h2">Projet perso</p>
+              </div>
+            </div>
+            <div class="card m-2 text-center" style="width: 18rem;">
+              <div class="card-body">
+                <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+                <p class="card-text h2">Projet perso</p>
+              </div>
+            </div>
+            <div class="card m-2 text-center" style="width: 18rem;">
+              <div class="card-body">
+                <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="green" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+                <p class="card-text h2">Projet perso</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
