@@ -15,6 +15,7 @@ try {
     projetVie__fleche.addEventListener("click", () => {
     projetVie__page.parentNode.classList.add("projetVie__page__active")
     blockMainIdea.style.zIndex = "5"
+    projetVie__page.style.zIndex = "10"
 })
 }catch {
 
